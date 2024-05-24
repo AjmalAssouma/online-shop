@@ -42,7 +42,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
 
   if (!navigator.onLine) {
-    if (event.request.url === "http://localhost:3000/static/js/bundle.js") {
+    if (event.request.url === "https://online-shop-front-end/static/js/bundle.js") {
         event.waitUntil(
             this.registration.showNotification("Internet", {
                 body: 'La connexion internet ne marche pas correctement',
