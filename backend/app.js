@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 app.use(cors({
-  origin: 'https://online-shop-front-end.vercel.app/',
+  origin: 'https://online-shop-front-end.vercel.app',
   credentials: true
 }));
 
