@@ -3,7 +3,7 @@ const urlsToCache = [
     '/',
     '/index.html',
     '/manifest.json',
-    '/static/js/main.0c8aa17b.js',
+    '/static/js/main.fe1b7402.js',
     '/static/css/main.93b18a65.css',
     '/bootstrap.min.css',
     '/users',
@@ -40,7 +40,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
 
   if (!navigator.onLine) {
-    if (event.request.url === "https://online-shop-front-end") {
+    if (event.request.url === "https://online-shop-front-end/") {
         event.waitUntil(
             this.registration.showNotification("Internet", {
                 body: 'La connexion internet ne marche pas correctement',
