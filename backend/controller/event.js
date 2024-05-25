@@ -98,7 +98,7 @@ router.delete(
         return next(new ErrorHandler("Le produit est introuvable avec cet identifiant", 404));
       }    
 
-      for (let i = 0; 1 < product.images.length; i++) {
+      for (let i = 0; i < product.images.length; i++) {
         const result = await cloudinary.v2.uploader.destroy(
           event.images[i].public_id
         );
