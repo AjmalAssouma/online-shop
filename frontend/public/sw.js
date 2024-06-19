@@ -18,9 +18,6 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         return cache.addAll(urlsToCache);
-           .catch((error) => {
-            console.error('Failed to cache resources:', error);
-          });
       })
   );
 });
@@ -45,7 +42,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
 
   if (!navigator.onLine) {
-    if (event.request.url === "https://online-shop-front-end") {
+    if (event.request.url === "https://online-shop-front-end/static/js/bundle.js") {
         event.waitUntil(
             this.registration.showNotification("Internet", {
                 body: 'La connexion internet ne marche pas correctement',
