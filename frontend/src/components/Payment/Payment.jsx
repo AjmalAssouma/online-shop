@@ -15,6 +15,8 @@ import axios from "axios";
 import { server } from "../../server";
 import { toast } from "react-toastify";
 import { RxCross1 } from "react-icons/rx";
+import {openKkiapayWidget} from 'kkiapay';
+
 
 const Payment = () => {
   const [orderData, setOrderData] = useState([]);
@@ -49,6 +51,17 @@ const Payment = () => {
       .then((orderID) => {
         return orderID;
       });
+  };
+
+  const kkipayhandlePayment = () => {
+    openKkiapayWidget({
+      api_key: '3bf3b2402b1c11ef90c10d1a8a4426da', // Remplacez par votre clé publique
+      sandbox: true, // Mettre à false en production
+      amount: orderData?.totalPrice, // Montant en centimes
+      currency: 'XOF', // Devise (par exemple, XOF)
+      callback: "https://kkiapay-redirect.com"
+    });
+  
   };
 
   const order = {
@@ -187,6 +200,7 @@ const Payment = () => {
             createOrder={createOrder}
             paymentHandler={paymentHandler}
             cashOnDeliveryHandler={cashOnDeliveryHandler}
+            kkipayhandlePayment={kkipayhandlePayment}
           />
         </div>
         <div className="w-full 800px:w-[35%] 800px:mt-0 mt-8">
@@ -205,6 +219,7 @@ const PaymentInfo = ({
   createOrder,
   paymentHandler,
   cashOnDeliveryHandler,
+  kkipayhandlePayment
 }) => {
   const [select, setSelect] = useState(1);
 
@@ -417,6 +432,53 @@ const PaymentInfo = ({
                 className={`${styles.button} !bg-[#f63b60] text-[#fff] h-[45px] rounded-[5px] cursor-pointer text-[18px] font-[600]`}
               />
             </form>
+          </div>
+        ) : null}
+      </div>
+
+      {/* paypal payment */}
+      <div>
+        <div className="flex w-full pb-5 border-b mb-2">
+          <div
+            className="w-[25px] h-[25px] rounded-full bg-transparent border-[3px] border-[#1d1a1ab4] relative flex items-center justify-center"
+            onClick={() => setSelect(4)}
+          >
+            {select === 4 ? (
+              <div className="w-[13px] h-[13px] bg-[#1d1a1acb] rounded-full" />
+            ) : null}
+          </div>
+          <h4 className="text-[18px] pl-2 font-[600] text-[#000000b1]">
+            {/* Pay with Paypal */}
+            Payer avec KKIAPAY
+          </h4>
+        </div>
+
+        {/* pay with payement */}
+        {select === 4 ? (
+          <div className="w-full flex border-b">
+            <div
+              className={`${styles.button} !bg-[#f63b60] text-white h-[45px] rounded-[5px] cursor-pointer text-[18px] font-[600]`}
+              onClick={() => setOpen(true)}
+            >
+              {/* Pay Now */}
+              Payer maintenant
+            </div>
+            {open && (
+              <div className="w-full fixed top-0 left-0 bg-[#00000039] h-screen flex items-center justify-center z-[99999]">
+                <div className="w-full 800px:w-[40%] h-screen 800px:h-[80vh] bg-white rounded-[5px] shadow flex flex-col justify-center p-8 relative overflow-y-scroll">
+                  <div className="w-full flex justify-end p-3">
+                    <RxCross1
+                      size={30}
+                      className="cursor-pointer absolute top-3 right-3"
+                      onClick={() => setOpen(false)}
+                    />
+                  </div>
+                  <button className={`${styles.button} !bg-[#f63b60] text-white h-[45px] rounded-[5px] cursor-pointer text-[18px] font-[600]`} onClick={kkipayhandlePayment} >
+                    Payer avec KKIAPAY
+                  </button>
+                </div> 
+              </div>
+            )}
           </div>
         ) : null}
       </div>
