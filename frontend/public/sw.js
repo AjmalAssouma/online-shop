@@ -3,7 +3,7 @@ const urlsToCache = [
     '/',
     '/index.html',
     '/manifest.json',
-    '/static/js/main.8a00fdd6.js',
+    '/static/js/main.6ac63ece.js',
     '/static/css/main.93b18a65.css',
     '/users',
     '/firebase-messaging-sw.js',
