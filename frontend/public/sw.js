@@ -27,27 +27,12 @@ self.addEventListener('install', (event) => {
 });
 
 
-// self.addEventListener('activate', (event) => {
-//   event.waitUntil(
-//     caches.keys().then((cacheNames) => {
-//       return Promise.all(
-//         cacheNames.map((cacheName) => {
-//           if (cacheName !== CACHE_NAME) {
-//             return caches.delete(cacheName);
-//           }
-//         })
-//       );
-//     })
-//   );
-// });
-
 self.addEventListener('activate', (event) => {
-  const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
+          if (cacheName !== CACHE_NAME) {
             return caches.delete(cacheName);
           }
         })
@@ -72,7 +57,7 @@ self.addEventListener('fetch', (event) => {
   // }
 
     if (!navigator.onLine) {
-    if (event.request.url === "https://online-shop-front-end/") {
+    if (event.request.url === "https://online-shop-front-end") {
       event.waitUntil(
         self.registration.showNotification("Internet", {
           body: 'La connexion internet ne marche pas correctement',
