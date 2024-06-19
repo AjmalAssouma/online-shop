@@ -8,8 +8,7 @@ const urlsToCache = [
     '/static/js/0.chunk.js',
     '/static/css/main.chunk.css',
     '/bootstrap.min.css',
-    '/static/js/main.173dc18b.js',
-    '/static/css/main.93b18a65.css',
+    '/users',
     '/firebase-messaging-sw.js',
     '/sw.js'
 ];
