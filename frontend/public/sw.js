@@ -3,6 +3,13 @@ const urlsToCache = [
     '/',
     '/index.html',
     '/manifest.json',
+    '/static/js/bundle.js',
+    '/static/js/main.chunk.js',
+    '/static/js/0.chunk.js',
+    '/static/css/main.chunk.css',
+    '/bootstrap.min.css',
+    '/static/js/main.173dc18b.js',
+    '/static/css/main.93b18a65.css',
     '/firebase-messaging-sw.js',
     '/sw.js'
 ];
