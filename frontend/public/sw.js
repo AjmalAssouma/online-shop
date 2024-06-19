@@ -3,7 +3,7 @@ const urlsToCache = [
     '/',
     '/index.html',
     '/manifest.json',
-    '/static/js/main.44d3b5e8.js',
+    '/static/js/main.fd42f6e1.js',
     '/static/css/main.93b18a65.css',
     '/firebase-messaging-sw.js',
     '/sw.js'
@@ -38,7 +38,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
 
   if (!navigator.onLine) {
-    if (event.request.url === "https://online-shop-front-end/static/js/bundle.js") {
+    if (event.request.url === "https://online-shop-front-end") {
         event.waitUntil(
             this.registration.showNotification("Internet", {
                 body: 'La connexion internet ne marche pas correctement',
