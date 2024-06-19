@@ -3,9 +3,6 @@ const urlsToCache = [
     '/',
     '/index.html',
     '/manifest.json',
-    '/static/js/main.6ac63ece.js',
-    '/static/css/main.93b18a65.css',
-    '/users',
     '/firebase-messaging-sw.js',
     '/sw.js'
 ];
@@ -15,6 +12,9 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         return cache.addAll(urlsToCache);
+           .catch((error) => {
+            console.error('Failed to cache resources:', error);
+          });
       })
   );
 });
@@ -53,14 +53,25 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
 
-  if (!navigator.onLine) {
+  // if (!navigator.onLine) {
+  //   if (event.request.url === "https://online-shop-front-end/") {
+  //       event.waitUntil(
+  //           this.registration.showNotification("Internet", {
+  //               body: 'La connexion internet ne marche pas correctement',
+  //               icon: 'img/logo96.png'
+  //           })
+  //       )
+  //   }
+  // }
+
+    if (!navigator.onLine) {
     if (event.request.url === "https://online-shop-front-end/") {
-        event.waitUntil(
-            this.registration.showNotification("Internet", {
-                body: 'La connexion internet ne marche pas correctement',
-                icon: 'img/logo96.png'
-            })
-        )
+      event.waitUntil(
+        self.registration.showNotification("Internet", {
+          body: 'La connexion internet ne marche pas correctement',
+          icon: 'img/logo96.png'
+        })
+      );
     }
   }
     
