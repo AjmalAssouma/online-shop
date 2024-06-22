@@ -59,7 +59,7 @@ const Payment = () => {
       sandbox: true, // Mettre à false en production
       amount: orderData?.totalPrice, // Montant en centimes
       currency: 'XOF', // Devise (par exemple, XOF)
-      callback: "https://kkiapay-redirect.com"
+      callback: "https://online-shop-front-end.vercel.app/order/success"
     });
   
   };
